@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Clash Arena</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <h1>Hero Clash Arena</h1>
+    <p class="subtitle">A fast-paced anime-inspired 1v1 fighter</p>
+
+    <section class="hud">
+      <div class="player-info" id="player1-info">
+        <h2>Deku</h2>
+        <div class="health-track"><div class="health-fill" id="p1-health"></div></div>
+      </div>
+      <div class="center-info">
+        <p class="timer" id="timer">90</p>
+        <button id="reset-btn" type="button">Restart Match</button>
+      </div>
+      <div class="player-info" id="player2-info">
+        <h2>Bakugo</h2>
+        <div class="health-track"><div class="health-fill" id="p2-health"></div></div>
+      </div>
+    </section>
+
+    <section class="arena" id="arena" aria-label="Fighting arena">
+      <div class="fighter deku" id="fighter1" aria-label="Deku fighter"></div>
+      <div class="fighter bakugo" id="fighter2" aria-label="Bakugo fighter"></div>
+      <div id="result-banner" class="result-banner" hidden></div>
+    </section>
+
+    <section class="controls-help">
+      <h3>Controls</h3>
+      <ul>
+        <li><strong>Deku:</strong> A / D move, W jump, F punch, G smash</li>
+        <li><strong>Bakugo:</strong> J / L move, I jump, ; blast, ' AP shot</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
