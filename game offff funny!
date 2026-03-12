@@ -1,0 +1,60 @@
+import random
+
+class Character:
+    def __init__(self, name, health, attack_power, quirk):
+        self.name = name
+        self.health = health
+        self.attack_power = attack_power
+        self.quirk = quirk
+
+    def attack(self, target):
+        damage = random.randint(self.attack_power - 10, self.attack_power + 10)
+        target.health -= damage
+        return damage
+
+class Godzilla:
+    def __init__(self):
+        self.name = "Godzilla"
+        self.health = 500
+        self.attack_power = 40
+
+    def atomic_breath(self, target):
+        damage = random.randint(30, 60)
+        target.health -= damage
+        return damage
+
+def play_game():
+    heroes = [
+        Character("Deku", 120, 35, "One For All"),
+        Character("Bakugo", 100, 40, "Explosion"),
+        Character("Todoroki", 110, 38, "Half-Cold Half-Hot")
+    ]
+    monster = Godzilla()
+
+    print("--- MHA Heroes vs. Godzilla ---")
+
+    while monster.health > 0 and any(h.health > 0 for h in heroes):
+        for hero in heroes:
+            if hero.health <= 0: continue
+
+            # Hero turn
+            dmg = hero.attack(monster)
+            print(f"{hero.name} uses {hero.quirk}! Deals {dmg} damage. Godzilla HP: {max(0, monster.health)}")
+
+            if monster.health <= 0:
+                print("\nGODZILLA HAS BEEN DEFEATED! The heroes win!")
+                return
+
+        # Godzilla turn
+        active_heroes = [h for h in heroes if h.health > 0]
+        if active_heroes:
+            target = random.choice(active_heroes)
+            dmg = monster.atomic_breath(target)
+            print(f"\nGodzilla fires ATOMIC BREATH at {target.name}! Deals {dmg} damage.")
+            if target.health <= 0:
+                print(f"{target.name} has been knocked out!")
+
+    print("\nAll heroes defeated... Godzilla reigns supreme.")
+
+if __name__ == "__main__":
+    play_game()
